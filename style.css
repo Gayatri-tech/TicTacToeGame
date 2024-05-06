@@ -24,7 +24,7 @@ p {
   width: 17vw;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 2rem auto;
+  margin: 1rem auto;
 }
 .btn {
   margin: 0.2rem;
@@ -49,13 +49,14 @@ p {
   cursor: pointer;
 }
 #winMesg {
+  height: 50px;
   width: 500px;
   background-color: #8ecae6;
   color: #fb8500;
   font-size: 2rem;
   border-radius: 6px;
-  margin: 15px auto;
+  margin: 1rem auto;
 }
 .hide {
-  display: none;
+  visibility: hidden;
 }

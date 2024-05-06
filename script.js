@@ -2,6 +2,7 @@ let btns = document.querySelectorAll(".btn");
 let resetBtn = document.getElementById("resetBtn");
 let winMesg = document.getElementById("winMesg");
 let turnO = true;
+let moves = 0;
 const winPatterns = [
   [0, 1, 2],
   [0, 3, 6],
@@ -14,7 +15,6 @@ const winPatterns = [
 ];
 btns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    console.log("btn clicked");
     if (turnO) {
       btn.innerHTML = "O";
       turnO = false;
@@ -23,6 +23,7 @@ btns.forEach((btn) => {
       turnO = true;
     }
     btn.disabled = true;
+    moves++;
     checkWinner();
   });
 });
@@ -32,29 +33,46 @@ const checkWinner = () => {
     let pos2 = btns[pattern[1]].innerHTML;
     let pos3 = btns[pattern[2]].innerHTML;
     if (pos1 != "" && pos2 != "" && pos3 != "") {
-      if ((pos1 === pos2) & (pos2 === pos3)) {
+      if (pos1 === pos2 && pos2 === pos3) {
         if (turnO === false) {
           winMesg.innerHTML = "Congratulations! The winner is 'O'";
-          winMesg.style.display = "block";
-          for (let btn of btns) {
-            btn.disabled = true;
-          }
+          // winMesg.style.visibility = "visible";
+          // for (let btn of btns) {
+          //   btn.disabled = true;
+          // }
         } else {
           winMesg.innerHTML = "Congratulations! The winner is 'X'";
-          winMesg.style.display = "block";
-          for (let btn of btns) {
-            btn.disabled = true;
-          }
+          // winMesg.style.visibility = "visible";
+          // for (let btn of btns) {
+          //   btn.disabled = true;
+          // }
         }
+        winMesg.style.visibility = "visible";
+        disableAllButtons();
+        return;
       }
     }
   }
+  if (moves === 9) {
+    winMesg.innerHTML = "It's a tie!";
+    winMesg.style.visibility = "visible";
+    disableAllButtons();
+  }
 };
+
+const disableAllButtons = () => {
+  for (let btn of btns) {
+    btn.disabled = true;
+  }
+};
+
 const resetGame = () => {
   for (let btn of btns) {
     btn.innerHTML = "";
     btn.disabled = false;
-    winMesg.style.display = "none";
+    winMesg.style.visibility = "hidden";
   }
+  turnO = true;
+  moves = 0;
 };
 resetBtn.addEventListener("click", resetGame);
