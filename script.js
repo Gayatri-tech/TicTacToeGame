@@ -1,6 +1,5 @@
 let btns = document.querySelectorAll(".btn");
 let resetBtn = document.getElementById("resetBtn");
-let winMesg = document.getElementById("winMesg");
 let turnO = true;
 let moves = 0;
 const winPatterns = [
@@ -13,6 +12,13 @@ const winPatterns = [
   [3, 4, 5],
   [6, 7, 8],
 ];
+
+let winMesg = document.createElement("div");
+winMesg.id = "winMesg";
+let pElement = document.querySelector(".lastP");
+pElement.insertAdjacentElement("afterend", winMesg);
+// winMesg.style.visibility = "hidden";
+
 btns.forEach((btn) => {
   btn.addEventListener("click", () => {
     if (turnO) {
@@ -36,16 +42,8 @@ const checkWinner = () => {
       if (pos1 === pos2 && pos2 === pos3) {
         if (turnO === false) {
           winMesg.innerHTML = "Congratulations! The winner is 'O'";
-          // winMesg.style.visibility = "visible";
-          // for (let btn of btns) {
-          //   btn.disabled = true;
-          // }
         } else {
           winMesg.innerHTML = "Congratulations! The winner is 'X'";
-          // winMesg.style.visibility = "visible";
-          // for (let btn of btns) {
-          //   btn.disabled = true;
-          // }
         }
         winMesg.style.visibility = "visible";
         disableAllButtons();
@@ -70,8 +68,8 @@ const resetGame = () => {
   for (let btn of btns) {
     btn.innerHTML = "";
     btn.disabled = false;
-    winMesg.style.visibility = "hidden";
   }
+  winMesg.style.visibility = "hidden";
   turnO = true;
   moves = 0;
 };
