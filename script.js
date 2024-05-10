@@ -17,7 +17,6 @@ let winMesg = document.createElement("div");
 winMesg.id = "winMesg";
 let pElement = document.querySelector(".lastP");
 pElement.insertAdjacentElement("afterend", winMesg);
-// winMesg.style.visibility = "hidden";
 
 btns.forEach((btn) => {
   btn.addEventListener("click", () => {
