@@ -24,7 +24,6 @@ p {
 .container {
   width: 100%;
   max-width: 330px;
-  /* background-color: red; */
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -58,7 +57,7 @@ p {
   color: #fb8500;
   font-size: 2rem;
   border-radius: 6px;
-  margin: 1rem auto;
+  margin: 2rem auto;
   visibility: hidden;
 }
 
